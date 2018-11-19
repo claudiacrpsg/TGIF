@@ -1,10 +1,13 @@
-body{
+/* Body */
+body {
   display: flex;
   flex-direction: column;
+  background-color: whitesmoke;
 }
 
-header{
-  background-image:url("images/raul-najera-313326-unsplash.jpg");
+/* Header */
+header {
+  background-image: url("images/raul-najera-313326-unsplash.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,80 +15,120 @@ header{
   color: whitesmoke;
 }
 
-h1{
-   margin-top: 30px;
+/* Header Title */
+h1 {
+  margin-top: 30px;
   margin-left: 70px;
   font-size: 50px;
   text-shadow: 2px 2px 4px #000000;
 }
 
-span{
+span {
   display: block;
   font-size: 50px;
 }
 
-img{
-  height: 100px;
-}
-
-.content{
-  text-align: justify;
-  margin-top:50px;
-  margin-bottom: 50px;
-}
-
-
-.form-inline{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-input{
-  margin-left: 15px;
-}
-
-label{
-  padding-bottom: 10px;
-}
-
-select{
-   padding-bottom: 0px;
-}
-
-table{
-  margin-top: 30px;
-}
-
-thead{
-  background-color: #343a40;
+/* Navbar Email */
+.nav-link {
   color: whitesmoke;
 }
 
-.btn-info{
+a:hover {
+  color: brown;
+}
+
+/* Home Page Content */
+.contentHome {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+  text-align: justify;
+}
+
+/* Home Page Image */
+div img {
+  height: 300px;
+  margin-top: 20px;
+  box-shadow: 0px 6px 5px #ccc;
+  border-radius: 5px;
+}
+
+/* Home Page Read More Button */
+.btn-info {
   background-color: brown;
   border-color: brown;
   margin-bottom: 20px;
 }
 
-.btn-info:hover{
+.btn-info:hover {
   background-color: grey;
   border-color: grey;
 }
 
-footer{
+/* Senate and House Pages Content */
+.contentCongress {
+  text-align: justify;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 60px;
+}
+
+/* Congress Pages Filter Forms */
+.form-inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+input {
+  margin-left: 15px;
+}
+
+label {
+  padding-bottom: 10px;
+}
+
+select {
+  padding-bottom: 0px;
+}
+
+/* Congress Tables */
+.congressTable{
+  display: flex;
+  justify-content: center;
+}
+
+/* Attendance and Party Loyalty content and at a glance table */
+.contentTable {
+  display: flex;
+  justify-content: space-around;
+  text-align: justify;
+  margin-top: 50px;
+}
+
+/* Attendance and Party Loyalty most and least tables */
+.tableMostLeast{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+/* Tables - generic */
+table{
   text-align: center;
-  margin-top: 40px;
+}
+
+thead {
+  background-color: #9E2125;
+  color: whitesmoke;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 30px;
   background-color: #343a40;
   height: 50px;
   color: whitesmoke;
   padding-top: 10px;
-}
-
-.nav-link{
-  color: whitesmoke;
-}
-
-a:hover{
-  color: brown;
 }

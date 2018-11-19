@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>TGIF Senate</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="congress.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
-
 <body>
-  <!-- Header -->
+  <!-------------------- Header -------------------->
   <header>
     <div class="title">
-      <h1>Transparent<span>Government</span> in Fact <i class="fas fa-flag-usa"></i></h1>
+      <h1> Transparent<span> Government </span>in Fact <i class="fas fa-flag-usa"></i></h1>
     </div>
   </header>
-  <!-- Navigation bar-->
+  <!-------------------- Navagation bar -------------------->
   <div class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="index.html"> Home</a>
+        <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,10 +31,6 @@
                 <a class="dropdown-item" href="house-starter-page.html">House</a>
               </div>
             </li>
-          </ul>
-        </div>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Attendance</a>
@@ -45,10 +39,6 @@
                 <a class="dropdown-item" href="house-attendance-starter-page.html">House</a>
               </div>
             </li>
-          </ul>
-        </div>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Party Loyalty</a>
@@ -62,23 +52,21 @@
         <div class="mail">
           <ul class="nav justify-content-end">
             <li class="nav-item">
-              <a class="nav-link" href="mail"><i class="far fa-envelope"></i> info@tgif.net</a>
+              <a class="nav-link" href="mailto:info@tgif.net" target="_blank"> <i class="far fa-envelope"></i> info@tgif.net</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   </div>
-  <!-- Senate page content -->
-  <div class="container">
+  <!-------------------- Senate page content -------------------->
+  <div class="contentCongress">
     <div class="col-6">
-      <div class="content">
-        <h2>Senators</h2>
-        <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
-      </div>
+      <h2>Senators</h2>
+      <p>First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.</p>
     </div>
   </div>
-  <!-- Filters -->
+  <!-------------------- Filters -------------------->
   <div class="container form-inline">
     <form>
       <div class="col-12">
@@ -94,15 +82,15 @@
       <div class="form-inline col-12">
         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Filter by State:</label>
         <select id="mySelect" name="state">
-          <option value = "All">All</option>
+          <option value="All">All</option>
         </select>
       </div>
     </form>
   </div>
-  <!-- Table container -->
-  <div class="container">
-    <div class="col-12">
-      <table class="table table-hover" id="myTable">
+  <!-------------------- Tables -------------------->
+  <div class="congressTable">
+    <div class="col-11">
+      <table class="table table-hover shadow p-3 mb-5 bg-white rounded" id="myTable">
         <thead>
           <tr>
             <th>Members</th>
@@ -117,11 +105,11 @@
       </table>
     </div>
   </div>
-  <!-- Footer -->
+  <!-------------------- Footer -------------------->
   <footer>
     <p> &copy; 2016 TGIF | All rights reserved</p>
   </footer>
-  <!-- Scripts -->
+  <!-------------------- Scripts -------------------->
   <table id="senate-data"></table>
   <script src="procongress113senate.js"></script>
   <script src="main.js"></script>

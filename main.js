@@ -71,7 +71,6 @@ function filterAll() {
 }
     filterAll();
 
-
 //The table - it recieves a generic array that is then changed according to the conditions above
 
 function table(array) {

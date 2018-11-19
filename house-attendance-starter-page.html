@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-<title>TGIF House Attendance</title>
+<head>
+  <title>TGIF House Attendance</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="congress.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    </head>
-    
-    <body>
-        <!-- Header -->
+</head>
+<body>
+  <!-------------------- Header -------------------->
   <header>
     <div class="title">
       <h1>Transparent<span>Government</span> in Fact <i class="fas fa-flag-usa"></i></h1>
     </div>
   </header>
-         <!-- Navigation bar-->
+  <!-------------------- Navigation bar -------------------->
   <div class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="index.html"> Home</a>
+        <a class="navbar-brand" href="index.html"><i class="fas fa-home"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,26 +27,18 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Congress 113</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Senate</a>
+                <a class="dropdown-item" href="senate-starter-page.html">Senate</a>
                 <a class="dropdown-item" href="house-starter-page.html">House</a>
               </div>
             </li>
-          </ul>
-        </div>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Attendance</a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="senate-attendance-starter-page.html">Senate</a>
-                <a class="dropdown-item" href="house-attendance-starter-page.html">House</a>
+                <a class="dropdown-item" href="#">House</a>
               </div>
             </li>
-          </ul>
-        </div>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
             <li class="nav-item dropdown active">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Party Loyalty</a>
@@ -61,152 +52,89 @@
         <div class="mail">
           <ul class="nav justify-content-end">
             <li class="nav-item">
-              <a class="nav-link" href="mail"><i class="far fa-envelope"></i> info@tgif.net</a>
+              <a class="nav-link" href="mailto:info@tgif.net" target="_blank"> <i class="far fa-envelope"></i> info@tgif.net</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-  </div>     
-        <!--House Attendance content-->
-        <div class="container">
-    <div class="col-6">
-      <div class="content">
-            <h2>Attendance</h2>
-            <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
-
-            <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
-    	      </div>
+  </div>
+  <!-------------------- House attendance content and at glance table -------------------->
+  <div class="contentTable">
+    <div class="col-5">
+      <div>
+        <h2>Attendance</h2>
+        <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+        <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+      </div>
+    </div>
+    <div class="col-5">
+      <h2>House at a glance</h2>
+      <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+        <thead>
+          <tr>
+            <th>Party</th>
+            <th>No. of Reps</th>
+            <th>% Voted with Party</th>
+          </tr>
+        </thead>
+        <tbody id="glancebody">
+          <tr id="repRow">
+            <td><i class="fas fa-republican"></i> Republican</td>
+          </tr>
+          <tr id="demRow">
+            <td><i class="fas fa-democrat"></i> Democrat</td>
+          </tr>
+          <tr id="indRow">
+            <td><i class="far fa-user"></i> Independent</td>
+          </tr>
+          <tr id="totalRow">
+            <td>Total</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-           <!--Table-->
-            <h2>Senate at a glance</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Party</th>
-                        <th>Number of Reps</th>
-                        <th>% Voted with Prty</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Republican</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>Democrat</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>Independent</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                </tbody>
-            </table>
+  <!-------------------- Senate attendance least and most tables -------------------->
+  <div class="tableMostLeast">
+    <div class="col-5">
+      <h2>Least Engaged (Bottom 10% Attendance)</h2>
+      <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>No. of Missed Votes</th>
+            <th>% Missed</th>
+          </tr>
+        </thead>
+        <tbody id="leastbody">
+        </tbody>
+      </table>
+    </div>
 
-            <h2>Least Engaged (Bottom 10% Attendance)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Most Engaged (Top 10% Attendance)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                </tbody>
-            </table>
-
-    	<!-- Footer -->
+    <div class="col-5">
+      <h2>Most Engaged (Top 10% Attendance)</h2>
+      <table class="table table-hover shadow p-3 mb-5 bg-white rounded">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>No. of Missed Votes</th>
+            <th>% Missed</th>
+          </tr>
+        </thead>
+        <tbody id="mostbody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-------------------- Footer -------------------->
   <footer>
     <p> &copy; 2016 TGIF | All rights reserved</p>
   </footer>
-  <!-- Scripts -->
-  <table id="senate-data"></table>
-  <script src="procongress113senate.js"></script>
-  <script src="main.js"></script>
+  <!-------------------- Scripts -------------------->
+  <table id="house-data"></table>
+  <script src="procongress113house.js"></script>
+  <script src="attendance-house.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
