@@ -1,4 +1,4 @@
-//House JS
+//Senate JS
 
 //The table - loads the table first
 table(data.results[0].members); //table function is called first with all the members so that when the page is loaded, the complete table appears.
@@ -36,6 +36,7 @@ states();
 //}
 
 //filterAll - function for both filters
+
 function filterAll() {
     var members = data.results[0].members;//All members
     let checkValue = [...document.querySelectorAll("input[name=party]:checked")]; // gets the values of all checkboxes and stores them in party array
@@ -70,7 +71,6 @@ function filterAll() {
 }
     filterAll();
 
-
 //The table - it recieves a generic array that is then changed according to the conditions above
 
 function table(array) {
@@ -80,9 +80,9 @@ function table(array) {
     var everyMember = array[i];
     var firstName = everyMember.first_name;
     var middleName = everyMember.middle_name || " ";
-    if (middleName == null) {
-      middleName = "";
-    }
+    //if (middleName == null) {
+    //  middleName = "";
+    //}
     var lastName = everyMember.last_name;
     var party = everyMember.party;
     var state = everyMember.state;

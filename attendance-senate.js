@@ -9,10 +9,10 @@ var statistics = {
     "PercentageVotedWithPartyRep": 0,
     "PercentageVotedWithPartyDem": 0,
     "PercentageVotedWithPartyInd": 0,
-    "TotalPercentage":0
+    "TotalPercentage": 0
   },
   "LeastEngaged": 0,
-  "MostEngaged": 0,
+  "MostEngaged": 0
 }
 
 //Variables
@@ -152,28 +152,18 @@ function tableGlance() {
 }
 tableGlance();
 
-
-
-
-
 function tableLeast() {
   const leastbody = document.getElementById("leastbody");
   const members = statistics.number.LeastEngaged;
 
   for (var i = 0; i < members.length; i++) {
-
     const row = document.createElement("tr");
-    if (members[i].middle_name == null) {
-      members[i].middle_name = "";
-    }
-    var fullName = members[i].first_name + " " + members[i].middle_name + " " + members[i].last_name;
-    row.insertCell().innerHTML = members[i].first_name + members[i].last_name;
+    row.insertCell().innerHTML = members[i].first_name + " " + members[i].last_name;
     row.insertCell().innerHTML = members[i].missed_votes;
     row.insertCell().innerHTML = members[i].missed_votes_pct;
     leastbody.append(row);
   }
 }
-
 tableLeast();
 
 function tableMost() {
@@ -181,7 +171,6 @@ function tableMost() {
   const members = statistics.number.MostEngaged;
 
   for (var i = 0; i < members.length; i++) {
-
     const row = document.createElement("tr");
     row.insertCell().innerHTML = members[i].first_name + " " + members[i].last_name;
     row.insertCell().innerHTML = members[i].missed_votes;
@@ -189,5 +178,4 @@ function tableMost() {
     mostbody.append(row);
   }
 }
-
 tableMost();

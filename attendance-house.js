@@ -91,10 +91,12 @@ function most() {
     return obj1.missed_votes_pct - obj2.missed_votes_pct;
   });
   var x = members.length * 0.1;
-
   for (var i = 0; i <= x; i++) {
     mostEngaged.push(members[i]);
-  }
+    }
+      if(members[x].missed_votes_pct == members[x + 1].missed_votes_pct){
+    mostEngaged.push(members[i]);
+      }
 }
 most();
 
@@ -106,7 +108,6 @@ function least() {
   });
   var reverse = members.reverse();
   var x = reverse.length * 0.1;
-
   for (var i = 0; i <= x; i++) {
     leastEngaged.push(members[i]);
   }

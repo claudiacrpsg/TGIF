@@ -81,7 +81,6 @@ statistics.number.PercentageVotedWithPartyInd = percentageInd.toFixed(2) + "%";
 
 var percent = percentageRep + percentageDem + percentageInd;
 var totalPercent = percent / 3;
-
 statistics.number.TotalPercentage = totalPercent.toFixed(2) + "%";
 
 //Most and least loyal
@@ -165,7 +164,6 @@ function tableLeastLoyal() {
     leastbody.append(row);
   }
 }
-
 tableLeastLoyal();
 
 function tableMostLoyal() {
@@ -181,7 +179,4 @@ function tableMostLoyal() {
     mostbody.append(row);
   }
 }
-
 tableMostLoyal();
-
-

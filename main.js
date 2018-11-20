@@ -1,116 +1,445 @@
-//Senate JS
+getData();
 
-//The table - loads the table first
-table(data.results[0].members); //table function is called first with all the members so that when the page is loaded, the complete table appears.
-document.getElementById("mySelect").addEventListener("change", filterAll);
+function getData() {
+  if (window.location.pathname == "/senate-starter-page.html") {
+    fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
+      method: "GET",
+      headers: {
+        "X-API-Key": "OqC12HQC7EK92KD1AmaE1AucbLxPDIn57AQSqlbP"
+      }
+    }).then(function (result) {
+      return result.json()
+    }).then(function (data) {
+      var senateData = data.results[0].members;
+      states(senateData);
+      tableFilter(senateData);
+      listeners(senateData);
+    })
+  }
+  else if (window.location.pathname == "/senate-attendance-starter-page.html") {
+    fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
+      method: "GET",
+      headers: {
+        "X-API-Key": "OqC12HQC7EK92KD1AmaE1AucbLxPDIn57AQSqlbP"
+      }
+    }).then(function (result) {
+      return result.json()
+    }).then(function (data) {
+      var senateData = data.results[0].members;
+      calculations(senateData);
+      tableGlance(senateData);
+      tableLeast(senateData);
+      tableMost(senateData);
+    })
+  }
+  else if (window.location.pathname == "/senate-party-loyalty-starter-page.html") {
+    fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
+      method: "GET",
+      headers: {
+        "X-API-Key": "OqC12HQC7EK92KD1AmaE1AucbLxPDIn57AQSqlbP"
+      }
+    }).then(function (result) {
+      return result.json()
+    }).then(function (data) {
+      var senateData = data.results[0].members;
+      calculations(senateData);
+      tableGlance(senateData);
+      tableLeastLoyal(senateData);
+      tableMostLoyal(senateData);
+    })
+  }
+  else if (window.location.pathname == "/house-starter-page.html") {
+    fetch("https://api.propublica.org/congress/v1/113/house/members.json", {
+      method: "GET",
+      headers: {
+        "X-API-Key": "OqC12HQC7EK92KD1AmaE1AucbLxPDIn57AQSqlbP"
+      }
+    }).then(function (result) {
+      return result.json()
+    }).then(function (data) {
+      var houseData = data.results[0].members;
+      states(houseData);
+      tableFilter(houseData);
+      listeners(houseData);
+    })
+  }
+  else if (window.location.pathname == "/house-attendance-starter-page.html") {
+    fetch("https://api.propublica.org/congress/v1/113/house/members.json", {
+      method: "GET",
+      headers: {
+        "X-API-Key": "OqC12HQC7EK92KD1AmaE1AucbLxPDIn57AQSqlbP"
+      }
+    }).then(function (result) {
+      return result.json()
+    }).then(function (data) {
+      var houseData = data.results[0].members;
+      calculations(houseData);
+      tableGlance(houseData);
+      tableLeast(houseData);
+      tableMost(houseData);
+    })
+  }
+  else if (window.location.pathname == "/house-party-loyalty-starter-page.html") {
+    fetch("https://api.propublica.org/congress/v1/113/house/members.json", {
+      method: "GET",
+      headers: {
+        "X-API-Key": "OqC12HQC7EK92KD1AmaE1AucbLxPDIn57AQSqlbP"
+      }
+    }).then(function (result) {
+      return result.json()
+    }).then(function (data) {
+      var houseData = data.results[0].members;
+   calculations(houseData);
+      tableGlance(houseData);
+      tableLeastLoyal(houseData);
+      tableMostLoyal(houseData);
+      
+    })
+  }
+}
 
-//States - this function loads the state options on the state filter
-function states() {
-  var statesArray = []; //empty array to receive the members states
-  var select = document.getElementById("mySelect"); //conects to the id in html
-  for (var a = 0; a < data.results[0].members.length; a++) { //loop gets the states
-    var state = data.results[0].members[a].state;
-    statesArray.sort().push(state); //states are pushed into statesArray
-    var norepeatedValues = []; //empty array to receive states with no duplicates
+
+//Filters:
+//Filter Listeners
+function listeners(array) {
+  document.getElementById("mySelect").addEventListener("change", function () {
+    filterAll(array)
+  });
+  document.getElementById("R").addEventListener("click", function () {
+    filterAll(array)
+  });
+  document.getElementById("D").addEventListener("click", function () {
+    filterAll(array)
+  });
+  document.getElementById("I").addEventListener("click", function () {
+    filterAll(array)
+  });
+}
+
+//States Options
+function states(array) {
+  var statesArray = [];
+  var select = document.getElementById("mySelect");
+  for (var a = 0; a < array.length; a++) {
+    var state = array[a].state;
+    statesArray.sort().push(state);
+    var norepeatedValues = [];
     for (var i = 0; i < statesArray.length; i++) {
       for (var j = i + 1; j < statesArray.length; j++) {
-        if (statesArray[i] == statesArray[j]) { //condition compares the states
-          if (!norepeatedValues.includes(statesArray[i])) { //keep the states with no duplicates
-            norepeatedValues.push(statesArray[i]); //states without duplicates are pushed into new array
+        if (statesArray[i] == statesArray[j]) {
+          if (!norepeatedValues.includes(statesArray[i])) {
+            norepeatedValues.push(statesArray[i]);
           }
         }
       }
     }
   }
-  for (var b = 0; b < norepeatedValues.length; b++) { //loop creates an option for each state
+  for (var b = 0; b < norepeatedValues.length; b++) {
     var option = document.createElement("option");
     option.append(norepeatedValues[b]);
     mySelect.append(option);
   }
 }
-states();
 
-//Raul solution for the function that adds states
-//function newFunction(){
-//return Array.from(new Set(data.results[0].members.map((member) =>{ member.state}).sort()));
-//}
-
-//filterAll - function for both filters
-
-function filterAll() {
-    var members = data.results[0].members;//All members
-    let checkValue = [...document.querySelectorAll("input[name=party]:checked")]; // gets the values of all checkboxes and stores them in party array
-    var parties = checkValue.map(checked => checked.value); //using map we can filter the values and convert them in an array
-    var idVal = document.getElementById("mySelect"); //conects with html
-    var statesF = idVal.value; // the value of the filter by state
-    var filteredMembers = [];
-    for (var i = 0; i < members.length; i++) { //this loops all the members
-        if ((statesF == "All") && (parties.length == 0)) { //1st condition = nothing selected...
-            filteredMembers.push(members[i]); //...it shows the members
-        } else if ((members[i].state == statesF) && (parties.length == 0)) { //2nd condition = only states are selected...
-            filteredMembers.push(members[i]); //...the members states are pushed in the array
-        } else if ((statesF == "All") && (parties.length > 0)) { //3rd condition = only party is selected...
-            for (var i = 0; i < members.length; i++) {
-                for (var a = 0; a < parties.length; a++) {
-                    if (members[i].party === parties[a]) { //...members of the party selected are pushed into the array
-                        filteredMembers.push(members[i]);
-                    }
-                }
-            }
-        } else if ((statesF == members[i].state) && (parties.length > 0)) { //4th condition = both filters are selected...
-            for (var i = 0; i < members.length; i++) {
-                for (var a = 0; a < parties.length; a++) {
-                    if ((members[i].party == parties[a]) && (members[i].state == statesF)) { //...members with the same party and state as the selection are pushed into the array
-                        filteredMembers.push(members[i]);
-                    }
-                }
-            }
+//Select + Checkboxes
+function filterAll(array) {
+  var members = array;
+  let checkValue = [...document.querySelectorAll("input[name=party]:checked")];
+  var parties = checkValue.map(checked => checked.value);
+  var idVal = document.getElementById("mySelect");
+  var statesF = idVal.value;
+  var filteredMembers = [];
+  for (var i = 0; i < members.length; i++) {
+    if ((statesF == "All") && (parties.length == 0)) {
+      filteredMembers.push(members[i]);
+    } else if ((members[i].state == statesF) && (parties.length == 0)) {
+      filteredMembers.push(members[i]);
+    } else if ((statesF == "All") && (parties.length > 0)) {
+      for (var i = 0; i < members.length; i++) {
+        for (var a = 0; a < parties.length; a++) {
+          if (members[i].party === parties[a]) {
+            filteredMembers.push(members[i]);
+          }
         }
-        table(filteredMembers); //here the array is given to the table depending on which condition is executed
+      }
+    } else if ((statesF == members[i].state) && (parties.length > 0)) {
+      for (var i = 0; i < members.length; i++) {
+        for (var a = 0; a < parties.length; a++) {
+          if ((members[i].party == parties[a]) && (members[i].state == statesF)) {
+            filteredMembers.push(members[i]);
+          }
+        }
+      }
     }
-}
-    filterAll();
-
-//The table - it recieves a generic array that is then changed according to the conditions above
-
-function table(array) {
-  var body = document.getElementById("body");
-  body.innerHTML = "";
-  for (var i = 0; i < array.length; i++) {
-    var everyMember = array[i];
-    var firstName = everyMember.first_name;
-    var middleName = everyMember.middle_name || " ";
-    if (middleName == null) {
-      middleName = "";
-    }
-    var lastName = everyMember.last_name;
-    var party = everyMember.party;
-    var state = everyMember.state;
-    var senior = everyMember.seniority;
-    var votes = everyMember.votes_with_party_pct + "%";
-    var a = document.createElement("a");
-    var fullName = firstName + " " + middleName + " " + lastName;
-    var link = everyMember.url;
-    a.setAttribute("href", link);
-    a.setAttribute("target", "_blank");
-    a.innerHTML = fullName;
-    var tr = document.createElement("tr");
-    var td1 = document.createElement("td");
-    var td2 = document.createElement("td");
-    var td3 = document.createElement("td");
-    var td4 = document.createElement("td");
-    var td5 = document.createElement("td");
-    td1.append(a);
-    td2.append(party);
-    td3.append(state);
-    td4.append(senior);
-    td5.append(votes);
-    tr.append(td1);
-    tr.append(td2);
-    tr.append(td3);
-    tr.append(td4);
-    tr.append(td5);
-    body.append(tr);
+    tableFilter(filteredMembers);
   }
 }
 
+//Filter Table
+function tableFilter(array) {
+  var body = document.getElementById("body");
+  body.innerHTML = "";
+  for (var i = 0; i < array.length; i++) {
+    var row = document.createElement("tr");
+    var fullName = array[i].first_name + " " + (array[i].middle_name || " ") + " " + array[i].last_name;
+    var a = document.createElement("a");
+    var link = array[i].url;
+    a.setAttribute("href", link);
+    a.setAttribute("target", "_blank");
+    a.innerHTML = fullName;
+    row.insertCell().innerHTML = fullName;
+    row.insertCell().innerHTML = array[i].party;
+    row.insertCell().innerHTML = array[i].state;
+    row.insertCell().innerHTML = array[i].seniority;
+    row.insertCell().innerHTML = array[i].votes_with_party_pct + "%";
+    body.append(row);
+  }
+}
+
+
+
+var statistics = {
+  number: {
+    "NumberOfRepublicans": 0,
+    "NumberOfDemocrats": 0,
+    "NumberOfIndependents": 0,
+    "PercentageVotedWithPartyRep": 0,
+    "PercentageVotedWithPartyDem": 0,
+    "PercentageVotedWithPartyInd": 0,
+    "TotalPercentage": 0
+  },
+  "LeastEngaged": 0,
+  "MostEngaged": 0,
+  "LeastLoyal": 0,
+  "MostLoyal": 0,
+}
+console.log(statistics)
+
+function calculations(array){
+ 
+  //Variables
+var members = array;
+var republicans = [];
+var democrats = [];
+var independents = [];
+var republicansVotes = [];
+var democratsVotes = [];
+var independentsVotes = [];
+var mostEngaged = [];
+var leastEngaged = [];
+  var mostL = [];
+var leastL = [];
+
+//Total number of members by party
+function numberOfmembers() {
+
+  for (var i = 0; i < members.length; i++) {
+    if (members[i].party == "R") {
+      republicans.push(members[i].party);
+    }
+    if (members[i].party == "D") {
+      democrats.push(members[i].party);
+    }
+    if (members[i].party == "I") {
+      independents.push(members[i].party);
+    }
+  }
+}
+numberOfmembers();
+
+statistics.number.NumberOfRepublicans = republicans.length;
+statistics.number.NumberOfDemocrats = democrats.length;
+statistics.number.NumberOfIndependents = independents.length;
+
+
+
+//Percentage voted with party
+function votesWithParty() {
+  for (var i = 0; i < members.length; i++) {
+    if (members[i].party == "R") {
+      republicansVotes.push(members[i].votes_with_party_pct);
+    }
+    if (members[i].party == "D") {
+      democratsVotes.push(members[i].votes_with_party_pct);
+    }
+    if (members[i].party == "I") {
+      independentsVotes.push(members[i].votes_with_party_pct);
+    }
+  }
+}
+votesWithParty();
+
+var sum = republicansVotes.reduce((a, b) => a + b, 0);
+var percentageRep = sum / republicans.length;
+
+var sum = democratsVotes.reduce((a, b) => a + b, 0);
+var percentageDem = sum / democrats.length;
+
+var sum = independentsVotes.reduce((a, b) => a + b, 0);
+var percentageInd = sum / independents.length;
+
+var percent = percentageRep + percentageDem + percentageInd;
+var totalPercent = percent / 3;
+
+statistics.number.TotalPercentage = totalPercent.toFixed(2) + "%";
+statistics.number.PercentageVotedWithPartyRep = percentageRep.toFixed(2) + "%";
+statistics.number.PercentageVotedWithPartyDem = percentageDem.toFixed(2) + "%";
+statistics.number.PercentageVotedWithPartyInd = percentageInd.toFixed(2) + "%";
+
+//Most and least engaged
+//Most engaged
+function most() {
+  members.sort(function (obj1, obj2) {
+    return obj1.missed_votes_pct - obj2.missed_votes_pct;
+  });
+  var x = members.length * 0.1;
+
+  for (var i = 0; i <= x; i++) {
+    mostEngaged.push(members[i]);
+  }
+}
+most();
+
+//Least engaged
+
+function least() {
+  members.sort(function (obj1, obj2) {
+    return obj1.missed_votes_pct - obj2.missed_votes_pct;
+  });
+  var reverse = members.reverse();
+  var x = reverse.length * 0.1;
+
+  for (var i = 0; i <= x; i++) {
+    leastEngaged.push(members[i]);
+  }
+}
+least();
+
+statistics.number.MostEngaged = mostEngaged;
+statistics.number.LeastEngaged = leastEngaged;
+  
+  
+function mostLoyal(){
+  members.sort(function (obj1, obj2) {
+    return obj1.votes_with_party_pct - obj2.votes_with_party_pct;
+  });
+  var reverse = members.reverse();
+  var x = reverse.length * 0.1;
+
+  for (var i = 0; i <= x; i++) {
+    mostL.push(members[i]);
+  }
+}
+mostLoyal();
+
+//Least loyal
+
+function leastLoyal(){
+members.sort(function (obj1, obj2) {
+  return obj1.votes_with_party_pct - obj2.votes_with_party_pct;
+});
+  
+  var x = members.length * 0.1;
+ 
+  for(var i = 0; i <= x; i++){
+    leastL.push(members[i]);
+  } 
+}
+leastLoyal();
+
+statistics.number.MostLoyal = mostL;
+statistics.number.LeastLoyal = leastL;
+
+}
+
+
+//Table at a glance
+function tableGlance(array) {
+  var body = document.getElementById("glancebody");
+  var trRep = document.getElementById("repRow");
+  var trDem = document.getElementById("demRow");
+  var trInd = document.getElementById("indRow");
+  var trTotal = document.getElementById("totalRow");
+  var td = document.createElement("td");
+  var td1 = document.createElement("td");
+  var td2 = document.createElement("td");
+  var td3 = document.createElement("td");
+  var td4 = document.createElement("td");
+  var td5 = document.createElement("td");
+  var td6 = document.createElement("td");
+  var td7 = document.createElement("td");
+  var td8 = document.createElement("td");
+
+  var tr = document.createElement("tr");
+
+  td.append(statistics.number.NumberOfRepublicans);
+  td1.append(statistics.number.PercentageVotedWithPartyRep);
+  td2.append(statistics.number.NumberOfDemocrats);
+  td3.append(statistics.number.PercentageVotedWithPartyDem);
+  td4.append(statistics.number.NumberOfIndependents);
+  td5.append(statistics.number.PercentageVotedWithPartyInd);
+  td6.append("Total");
+  td7.append(statistics.number.NumberOfRepublicans + statistics.number.NumberOfDemocrats + statistics.number.NumberOfIndependents);
+  td8.append(statistics.number.TotalPercentage);
+  trRep.append(td, td1);
+  trDem.append(td2, td3);
+  trInd.append(td4, td5);
+  trTotal.append(td7, td8)
+
+  body.append(tr);
+}
+
+function tableLeast() {
+  const leastbody = document.getElementById("leastbody");
+  const members = statistics.number.LeastEngaged;
+
+  for (var i = 0; i < members.length; i++) {
+    const row = document.createElement("tr");
+    row.insertCell().innerHTML = members[i].first_name + " " + members[i].last_name;
+    row.insertCell().innerHTML = members[i].missed_votes;
+    row.insertCell().innerHTML = members[i].missed_votes_pct;
+    leastbody.append(row);
+  }
+}
+
+function tableMost() {
+  const mostbody = document.getElementById("mostbody");
+  const members = statistics.number.MostEngaged;
+
+  for (var i = 0; i < members.length; i++) {
+    const row = document.createElement("tr");
+    row.insertCell().innerHTML = members[i].first_name + " " + members[i].last_name;
+    row.insertCell().innerHTML = members[i].missed_votes;
+    row.insertCell().innerHTML = members[i].missed_votes_pct;
+    mostbody.append(row);
+  }
+}
+
+function tableLeastLoyal() {
+  const leastbody = document.getElementById("leastbody");
+  const members = statistics.number.LeastLoyal;
+
+  for (var i = 0; i < members.length; i++) {
+
+    const row = document.createElement("tr");
+    row.insertCell().innerHTML = members[i].first_name + " " + members[i].last_name;
+    row.insertCell().innerHTML = members[i].total_votes;
+    row.insertCell().innerHTML = members[i].votes_with_party_pct;
+    leastbody.append(row);
+  }
+}
+
+
+function tableMostLoyal() {
+  const mostbody = document.getElementById("mostbody");
+  const members = statistics.number.MostLoyal;
+
+  for (var i = 0; i < members.length; i++) {
+
+    const row = document.createElement("tr");
+    row.insertCell().innerHTML = members[i].first_name + " " + members[i].last_name;
+    row.insertCell().innerHTML = members[i].total_votes;
+    row.insertCell().innerHTML = members[i].votes_with_party_pct;
+    mostbody.append(row);
+  }
+}
