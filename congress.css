@@ -11,19 +11,19 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 250px;
+  height: 230px;
   color: whitesmoke;
 }
 
 /* Header Title */
 h1 {
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: 70px;
   font-size: 50px;
   text-shadow: 2px 2px 4px #000000;
 }
 
-span {
+h1 span {
   display: block;
   font-size: 50px;
 }
@@ -58,15 +58,19 @@ div img {
 }
 
 /* Home Page Read More Button */
-.btn-info {
+.btn-sm {
   background-color: brown;
   border-color: brown;
   margin-bottom: 20px;
 }
 
-.btn-info:hover {
+.btn-sm:hover {
   background-color: grey;
   border-color: grey;
+}
+
+#more {
+  display: none;
 }
 
 /* Senate and House Pages Content */
@@ -126,6 +130,7 @@ thead {
   background-color: #9E2125;
   color: whitesmoke;
 }
+
 
 /* Footer */
 footer {

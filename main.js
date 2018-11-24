@@ -15,7 +15,7 @@ function getData() {
       states(senateData);
       tableFilter(senateData);
       listeners(senateData);
-      document.getElementById("spin").style.display="none";
+      document.getElementById("spin").style.display = "none";
     })
   } else if (window.location.pathname == "/senate-attendance-starter-page.html") {
     fetch("https://api.propublica.org/congress/v1/113/senate/members.json", {
@@ -60,7 +60,7 @@ function getData() {
       states(houseData);
       tableFilter(houseData);
       listeners(houseData);
-      document.getElementById("spin").style.display="none";
+      document.getElementById("spin").style.display = "none";
     })
   } else if (window.location.pathname == "/house-attendance-starter-page.html") {
     fetch("https://api.propublica.org/congress/v1/113/house/members.json", {
@@ -413,7 +413,7 @@ function tableMost() {
   const members = statistics.number.MostEngaged;
   for (var i = 0; i < members.length; i++) {
     const row = document.createElement("tr");
-    
+
     var fullName = members[i].first_name + " " + members[i].last_name;
     var a = document.createElement("a");
     var link = members[i].url;
@@ -421,7 +421,7 @@ function tableMost() {
     a.setAttribute("target", "_blank");
     a.innerHTML = fullName;
     row.insertCell().append(a);
-    
+
     row.insertCell().innerHTML = members[i].missed_votes;
     row.insertCell().innerHTML = members[i].missed_votes_pct;
     mostbody.append(row);
@@ -462,5 +462,23 @@ function tableMostLoyal() {
     row.insertCell().innerHTML = members[i].total_votes;
     row.insertCell().innerHTML = members[i].votes_with_party_pct;
     mostbody.append(row);
+  }
+}
+
+
+//Read more/read less button
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
   }
 }
