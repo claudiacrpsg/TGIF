@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Fetch - this function gets the information from the propublica servers. There are two fetch - one for senate data and other for senate
 getData();
 
@@ -377,7 +376,7 @@ function myFunction() {
         moreText.style.display = "inline";
     }
 }
-=======
+
 //Fetch - this function gets the information from the propublica servers. There are two fetch - one for senate data and other for senate
 getData();
 
@@ -756,4 +755,4 @@ function myFunction() {
         moreText.style.display = "inline";
     }
 }
->>>>>>> befac6bcdd43e39c3c88869cb53d1ba7260bb8b6
+
